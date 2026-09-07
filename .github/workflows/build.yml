@@ -33,8 +33,9 @@ jobs:
         run: |
           cd openwrt
           echo "src-git kenzok8 https://github.com/kenzok8/small-package" >> feeds.conf.default
-          echo "src-git daed https://github.com/wkccd/luci-app-daed-runfiles.git;kix" >> feeds.conf.default
+          echo "src-git daed https://github.com/QiuSimons/luci-app-daed.git;kix" >> feeds.conf.default
           echo "src-git vnt2 https://github.com/whzhni1/luci-app-vnt2" >> feeds.conf.default
+          echo "src-git liquid https://github.com/zzsj0928/luci-theme-liquid" >> feeds.conf.default
           # echo "src-git oaf https://github.com/destan19/OpenAppFilter" >> feeds.conf.default
       - name: Update feeds
         run: |
@@ -86,6 +87,10 @@ jobs:
             京东云无线宝亚瑟 RE-SS-01 (IPQ6000 · 满血 NSS)
             - **uboot 刷入版本**：`squashfs-factory.bin`
             - **在线升级版本**：`squashfs-sysupgrade.bin`
-            - 默认后台：`182.168.50.1`  用户：`root`  密码：无
+            - 默认后台：`192.168.50.1`  用户：`root`  密码：`admin@cd`
+            - **主题**：luci-theme-liquid
+            - **编译时间**：${{ github.event.workflow_run.created_at }}
+            - **代理**：[daed](https://github.com/QiuSimons/luci-app-daed.git)
+            - **异地组网**：[vnt2](https://github.com/whzhni1/luci-app-vnt2)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
