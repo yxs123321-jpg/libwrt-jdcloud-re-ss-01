@@ -37,8 +37,6 @@ jobs:
           echo "src-git vnt2 https://github.com/whzhni1/luci-app-vnt2" >> feeds.conf.default
           # liquid 主题不走 feeds 机制，改为直接 clone 进 package 目录，
           # 避免和 kenzok8/small-package 里可能存在的同名包产生冲突。
-          # echo "src-git oaf https://github.com/destan19/OpenAppFilter" >> feeds.conf.default
-
       - name: Clone luci-theme-liquid directly into package/
         run: |
           rm -rf openwrt/package/luci-theme-liquid
@@ -81,13 +79,13 @@ jobs:
           ls -lh "$GITHUB_WORKSPACE/firmware/"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: jdcloud_re-ss-01_libwrt
           path: firmware/
 
       - name: Publish release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: firmware/*
           tag_name: v${{ github.run_number }}
