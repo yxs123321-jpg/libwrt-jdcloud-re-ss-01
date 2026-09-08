@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install build environment
         run: |
@@ -35,8 +35,15 @@ jobs:
           echo "src-git kenzok8 https://github.com/kenzok8/small-package" >> feeds.conf.default
           echo "src-git run https://github.com/wukongdaily/luci-app-run" >> feeds.conf.default
           echo "src-git vnt2 https://github.com/whzhni1/luci-app-vnt2" >> feeds.conf.default
-          echo "src-git liquid https://github.com/zzsj0928/luci-theme-liquid" >> feeds.conf.default
+          # liquid 主题不走 feeds 机制，改为直接 clone 进 package 目录，
+          # 避免和 kenzok8/small-package 里可能存在的同名包产生冲突。
           # echo "src-git oaf https://github.com/destan19/OpenAppFilter" >> feeds.conf.default
+
+      - name: Clone luci-theme-liquid directly into package/
+        run: |
+          rm -rf openwrt/package/luci-theme-liquid
+          git clone --depth 1 https://github.com/zzsj0928/luci-theme-liquid openwrt/package/luci-theme-liquid
+
       - name: Update feeds
         run: |
           cd openwrt
@@ -53,6 +60,8 @@ jobs:
         run: |
           cd openwrt
           make defconfig
+          echo "== luci-theme-liquid config check =="
+          grep -n "luci-theme-liquid" .config || echo "!! luci-theme-liquid 未出现在 .config 中，请检查包名/依赖 !!"
 
       - name: Download sources
         run: |
@@ -90,7 +99,7 @@ jobs:
             - 默认后台：`192.168.50.1`  用户：`root`  密码：`admin@cd`
             - **主题**：luci-theme-liquid
             - **编译时间**：${{ github.event.workflow_run.created_at }}
-            - **代理**：[daed](https://github.com/QiuSimons/luci-app-daed.git)
+            - **代理**：dae 用run安装器安装run版本控制面板 选[aarch64_cortex-a53]版本(https://github.com/wkccd/luci-app-daed-runfiles/releases)
             - **异地组网**：[vnt2](https://github.com/whzhni1/luci-app-vnt2)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

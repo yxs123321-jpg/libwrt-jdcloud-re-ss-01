@@ -9,23 +9,23 @@
 | 设备 | 京东云无线宝 亚瑟 RE-SS-01 |
 | SoC | Qualcomm IPQ6000 |
 | Target | qualcommax / ipq60xx |
-| 内存 / 闪存 | 512MB / 64G eMMC |
+| 内存 / 闪存 | 512MB / 128G eMMC |
 | 分区 | 2G 大分区 + Hugo Uboot |
 
 ## 内置功能
 
-- **科学上网**：dae
+- **科学上网**：dae 用run安装器安装run版本控制面板 选[aarch64_cortex-a53]版本(https://github.com/wkccd/luci-app-daed-runfiles/releases)
 - **文件共享**：Samba4 + USB/eMMC 自动挂载（ext4/ntfs/exfat/vfat）
 - **内网穿透 / DDNS**：DDNS-GO + 传统 DDNS（阿里云 / DNSPod）
 - **VPN**：WireGuard
 - **网络**：UPnP、-dnsmasq-full-
-- **界面 / 工具**：Argon 主题、ttyd 网页终端、FileBrowser 网页文件管理
+- **界面 / 工具**：Liquid 主题、ttyd 网页终端、FileBrowser 网页文件管理
 
 ## 默认登录信息
 
 - 后台地址：`http://192.168.50.1`
 - 用户名：`root`
-- 密码：无
+- 密码：`admin@cd`
 
 ## 固件说明
 
