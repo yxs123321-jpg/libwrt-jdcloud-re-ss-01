@@ -94,7 +94,7 @@ jobs:
             京东云无线宝亚瑟 RE-SS-01 (IPQ6000 · 满血 NSS)
             - **uboot 刷入版本**：`squashfs-factory.bin`
             - **在线升级版本**：`squashfs-sysupgrade.bin`
-            - 默认后台：`192.168.50.1`  用户：`root`  密码：`password`
+            - 默认后台：`192.168.68.1`  用户：`root`  密码：`password`
             - **主题**：luci-theme-liquid
             - **编译时间**：${{ github.event.workflow_run.created_at }}
             - **代理**：dae 用run安装器安装run版本控制面板 选[aarch64_cortex-a53]版本(https://github.com/wkccd/luci-app-daed-runfiles/releases)
