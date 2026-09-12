@@ -11,7 +11,7 @@ set -e
 sed -i 's/192\.168\.1\.1/192.168.50.1/g' package/base-files/files/bin/config_generate
 
 # 2. 修改默认 root 密码
-sed -i 's|^root:[^:]*:|root:$5$FEvKqB47IGg0kMEb$0L5AE92U9CgakKhWSKdBuK/vAzL/GaOqmEkR1oxUbd5:|' package/base-files/files/etc/shadow
+sed -i 's|^root:[^:]*:|root:$5$E\/2K2lQ0KtoBGm5j$wSYeljYN4gA0fu1pR3MwinrojqK..edSdDxGnY7UGG2:|' package/base-files/files/etc/shadow
 
 # 3. 设置默认主题为liquid
 mkdir -p files/etc/uci-defaults
